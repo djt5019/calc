@@ -23,8 +23,12 @@ def _value_discount(base_price):
         return .03
     elif base_price < 3000.0:
         return .05
-    else:
+    elif base_price < 10000.0:
         return .07
+    elif base_price < 50000.0:
+        return .1
+    else:
+        return .15
 
 
 def sales_discount(qty, unit_price, state):
