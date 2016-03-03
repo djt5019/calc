@@ -35,5 +35,5 @@ def sales_discount(qty, unit_price, state):
     """Cacluate final price given quantity, unit_price and state."""
     base_price = qty * unit_price
     discount_price = base_price * (1.0 + _value_discount(base_price))
-    return discount_price * (1.0 + _sales_tax_rate(state))
+    return round(discount_price * (1.0 + _sales_tax_rate(state)), 2)
 
