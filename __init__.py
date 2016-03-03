@@ -8,12 +8,12 @@ app = flask.Flask(__name__)
 
 def _input(name, value=None):
     if value:
-        return '<input name={name} placeholder={name} value={value} />'.format(
+        return '<input id={name} name={name} placeholder={name} value={value} />'.format(
             name=name, value=value
         )
 
     else:
-        return '<input name={name} placeholder={name} />'.format(
+        return '<input id={name} name={name} placeholder={name} />'.format(
             name=name
         )
 
@@ -62,6 +62,16 @@ def calculate_sales_tax():
 
     templ = """
         <html>
+        <head>
+        <script src="https://code.jquery.com/jquery-2.2.1.js" type="text/javascript"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.js" type="text/javascript"></script>
+        <style>
+            body {{ font-size: 150%; }}
+        </style>
+
+
+
+        </head>
         <body>
         <form method="POST">
             {}
@@ -70,6 +80,13 @@ def calculate_sales_tax():
         <p>
             {}
         </p>
+        <script>
+            jQuery(function($){{
+               $("#unit-price").mask("9?.99");
+               $("#state").mask("aa");
+               $("#quantity").mask("9?99999");
+            }});
+        </script>
         </body>
         </html>
         """.format(form, total_price(total))
