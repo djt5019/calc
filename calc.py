@@ -2,6 +2,7 @@
 
 def _sales_tax_rate(state):
     """Return the sales tax amount for a given state."""
+    state = state.upper()
     if "UT":
         return .047
     elif "CA":
