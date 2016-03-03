@@ -3,15 +3,15 @@
 def _sales_tax_rate(state):
     """Return the sales tax amount for a given state."""
     state = state.upper()
-    if "UT":
+    if state == "UT":
         return .047
-    elif "CA":
+    elif state == "CA":
         return .075
-    elif "NV":
+    elif state == "NV":
         return .0685
-    elif "PA":
+    elif state == "PA":
         return .06
-    elif "NJ":
+    elif state == "NJ":
         return .07
     else:
         return 0
@@ -34,6 +34,6 @@ def _value_discount(base_price):
 def sales_discount(qty, unit_price, state):
     """Cacluate final price given quantity, unit_price and state."""
     base_price = qty * unit_price
-    discount_price = base_price * (1.0 + _value_discount(base_price))
-    return discount_price * (1.0 + _sales_tax_rate(state))
+    discount_price = base_price * (1.0 - _value_discount(base_price))
+    return round(discount_price * (1.0 + _sales_tax_rate(state)), 2)
 
